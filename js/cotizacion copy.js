@@ -1,33 +1,54 @@
-// letiables
+// variables
 const precioBase = 50;
 const precioDistancia = 10;
+const precioTiempo = 1;
+const descuento = 0.1;
 
 //function
-function calcularPrecio(distancia) {
-  let precio = precioBase + (distancia * precioDistancia);
-
+function calcularPrecio(distancia, tiempo) {
+  let precio = precioBase + (distancia * precioDistancia) + (tiempo * precioTiempo);
+  precio = aplicarDescuento(precio, descuento);
   return precio;
 }
 
+function aplicarDescuento(precio, descuento) {
+  return precio * (1 - descuento);
+}
+
+//  remis
+const Remis = {
+  nombre: "MiRemis",
+  direccion: "Calle Falsa 123",
+  telefono: "555-1234"
+};
+
+// array de viajes
+const viajes = [];
+
 // agregando un nuevo viaje
 function agregarViaje() {
-  let distancia = document.querySelector("#numero1");
-  const precio = calcularPrecio(distancia);
-    let h2 = document.querySelector("#resultado");
-    h2.textContent = "El resultado es: " + precio;
-    alert("El precio del viaje es:" + precio);
-    console.log("El precio del viaje es:", precio);
-		
+  const distancia1 = parseInt(prompt("Ingrese la distancia en kilómetros:"));
+  const tiempo = parseInt(prompt("Ingrese el tiempo de espera en minutos:"));
+  const precio = calcularPrecio(distancia, tiempo);
+  viajes.push({ distancia, tiempo, precio });
+  alert("El precio del viaje es:" + precio);
+  console.log("El precio del viaje es:", precio);
+  let resultado = calcularPrecio()
+  let h2 = document.querySelector("#resultado");
+  h2.textContent = "El resultado es: " + precio;
 
+	  var distancia = document.querySelector("#numero1");
+		var numero2 = document.querySelector("#numero2");
+		var miBoton = document.querySelector("#miBoton");
+		var resultado1 = document.querySelector("#resultado");
 
+		miBoton.addEventListener("click", function() {
+			var producto = Number(numero1.value) * Number(numero2.value);
+			resultado1.textContent = "El resultado es: " + producto;
+		});
 }
-let miBoton = document.querySelector("#miBoton");
-miBoton.addEventListener("click", function() {
-  console.log("click")
-  agregarViaje()
-});
 
-
+agregarViaje() 
 
 
 
